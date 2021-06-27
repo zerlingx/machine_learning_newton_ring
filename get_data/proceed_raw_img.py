@@ -53,9 +53,17 @@ def proceed_and_output(input_path, output_path):
     # 输出的图片应当为224*224*1的灰度图
     # output_path="get_data/noised_1.jpg"
     cv2.imwrite(output_path, L)
+    #返回中心坐标ct，方便起见，在主函数里并成一个numpy数组保存
+    return ct
 
+cnt = 0
+ct = np.array([[12, 34]])
 for img_i in range(61):
     input_path = "raw_NTR_img/img_"+str(img_i+1)+".jpg"
     for out_i in range(50):
-        output_path = "data/img/img_"+str(img_i+1)+"_"+str(out_i+1)+".jpg"
-        proceed_and_output(input_path, output_path)
+        cnt += 1
+        output_path = "data/img/train_img_"+str(cnt)+".jpg"
+        ct_tmp = proceed_and_output(input_path, output_path)
+        ct = np.vstack((ct,ct_tmp))
+#保存中心坐标
+np.save("data/center/center.npy",ct)
