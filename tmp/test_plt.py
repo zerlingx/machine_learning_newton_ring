@@ -27,9 +27,9 @@ L = R * 299 / 1000 + G * 587 / 1000 + B * 114 / 1000
 ct = np.array(L.shape)/2
 plt.scatter(int(ct[0]), int(ct[1]), color='r',s=20)
 
-plt.imshow(L, cmap="gray")
-plt.colorbar()
-plt.show()
+# plt.imshow(L, cmap="gray")
+# plt.colorbar()
+# plt.show()
 
 # 灰度图L，一个numpy数组
 # print(L)

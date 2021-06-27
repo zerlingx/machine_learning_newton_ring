@@ -57,13 +57,15 @@ def proceed_and_output(input_path, output_path):
     return ct
 
 cnt = 0
-ct = np.array([[12, 34]])
 for img_i in range(61):
     input_path = "raw_NTR_img/img_"+str(img_i+1)+".jpg"
     for out_i in range(50):
         cnt += 1
         output_path = "data/img/train_img_"+str(cnt)+".jpg"
         ct_tmp = proceed_and_output(input_path, output_path)
-        ct = np.vstack((ct,ct_tmp))
+        if cnt == 1:
+            ct = np.array([ct_tmp])
+        else:
+            ct = np.vstack((ct,ct_tmp))
 #保存中心坐标
 np.save("data/center/center.npy",ct)
